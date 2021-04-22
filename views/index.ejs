@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <script src="https://cesiumjs.org/releases/1.76/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesiumjs.org/releases/1.76/Build/Cesium/Widgets/widgets.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
+  
+  </head>
+  <title>Point Cloud</title>
+
+  <body>  
+        <div id="cesiumContainer">
+          <div style="display: flex;width: auto;height: 100%;background-color: darkblue;">
+            <div class="sidebar" id="sidebar">
+              <div class="logo">
+                <img src="/Images/logo2.png" width="300" height="40">
+              </div>
+              <div style="width: 100%;height: 1px;background-color: white;margin-top: 4px;"></div>
+              <div class="add-dataContainner" onclick="open_upload()">
+                <div>
+                   <i class="fas fa-folder-plus"></i>
+                    Add data
+                </div>
+               <div>
+                 <i class="fas fa-plus"></i>
+               </div>
+                
+              </div>
+              
+                  <div class="ADDpanelContainner" id="panel">
+                    <form action="savefile" method="POST" enctype="multipart/form-data"> 
+                    <div class="chooseFile">
+                      <input type="file" id="myfile" name="myfile" hidden required onchange="getFile()">
+                      <label for="myfile" class="w3-button w3-blue">Choose file</label>
+                      <p id="fileName" style="margin-left: 10px;word-wrap: break-word;width: 15em;" >
+                        No file chosen.
+                      </p>
+                    </div>
+                    <h6>Assets Name</h6>
+                    <input type="text" id="Aname"  name="Aname" value="" style="height: 40px; width: 100%" required />
+                    <div class="dropdownBox">
+                      <h6>Convert to</h6>
+                      <select name="convertto" id="convertto" style="height: 40px;">
+                        <option value="3DTILES">3D tile</option>
+                        <option value="GLTF">glTF</option>
+                      </select>
+                      <h6>Source type</h6>
+                      <select name="sourcetype" id="sourcetype" style="height: 40px;">
+                        <option value="POINT_CLOUD">Point Cloud</option>
+                        <option value="CITYGML">CityGML</option>
+                        <option value="3D_MODEL">3D_MODEL</option>
+                        <option value="KML">KML</option>
+                      </select>
+                    </div>
+                    <button class="uploadFile w3-button ">Upload File</button>
+                  </form>
+                  </div>
+           
+              <div class="add-dataContainner">
+                <div>
+                  <i class="fas fa-database"></i>
+                    My assets
+                </div>
+                
+              </div>
+              <div class="AssetpanelContainner">
+                <%var number = 1%>
+                <% pcObj.forEach((data)=>{%> 
+                  <% var date = data.Date.getDate()+"/"+(data.Date.getMonth()+1)+"/"+data.Date.getFullYear()%>
+                  
+                  <div style="display: flex;flex-direction: row;justify-content: space-evenly;align-items: center;"  id="<%=data.AssetId;%>">
+                      <div class="item-box w3-card " onclick="Create_show_clipping_Model('<%=data.AssetId;%>','<%=data.TypeOfAsset; %>')">
+                        <div style="position: absolute;margin: 3px;color: white; font-size: 10px;font-weight: bold;" ><%=data.AssetId;%></div>
+                        <div class="label-item">
+                          <span><%=data.name; %></span>
+                         
+                        </div>
+                      </div>
+                      <div class="edit-icon btn-warning"><i class="far fa-edit"></i></div>
+                      <div class="remove-icon btn-danger" onclick="send_to_delete('<%=data.AssetId;%>')"><i class="far fa-trash-alt"></i></div>
+                  </div>
+                  
+                  <div style="width: 100%;height: 1px;background-color: white;margin-top: 4px;"></div>
+                  
+                <%});%>
+                
+              </div>
+
+            </div>
+            
+          </div>
+          <!-- <div class="sidebar"></div> -->
+          <div class="btn-menu" onclick="toggle_bar()" id="btn-menu">
+            <i class="fas fa-stream"></i>
+          </div>
+          
+
+        </div>
+          
+        
+
+        
+      
+    
+    
+      <script>
+        // Get your token from https://cesium.com/ion/tokens
+        Cesium.Ion.defaultAccessToken =
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjMzRiOGM0YS0zMmVkLTRiMDAtYjE1ZS04NzMzMjdmOTBkMmIiLCJpZCI6MzkyNTksImlhdCI6MTYwNzM5NzMwMH0.TcvDEZU22WwDJzg7Ryz8eh67a2G35ABHtOENn8CQSgc";
+        const viewer = new Cesium.Viewer("cesiumContainer", {
+          shadow: true,
+          geocoder: false, //Search in the upper right corner
+          homeButton: false, //Upper right corner Home
+          sceneModePicker: true, //upper right corner 2D/3D switch
+          baseLayerPicker: true, //top right corner terrain
+          navigationHelpButton: false, //Upper right corner Help
+          animation: false, // Disc animation control in the lower left corner
+          timeline: false, //timeline
+          fullscreenButton: false, //Bottom right corner full screen control
+          vrButton: false, // If set to true, a VRButton widget will be created.
+          scene3DOnly: false, // Each geometry instance is only rendered in 3D to save GPU memory
+          infoBox: false, //Hide the prompt message after clicking the element
+          terrainProvider: Cesium.createWorldTerrain(),
+        });
+        var btnmenu = document.getElementById('btn-menu')
+        var sidebar = document.getElementById('sidebar')
+        var panel = document.getElementById('panel')
+       
+        var isOpenbar = false;
+        var isOpen_panel_add = true;
+        function toggle_bar(){
+          if(isOpenbar){
+            sidebar.style.width = "400px";
+            btnmenu.style.marginLeft = "405px"
+            sidebar.style.marginLeft = "0px";
+          }
+          else{
+            sidebar.style.width = "0px";
+            btnmenu.style.marginLeft = "5px";
+            sidebar.style.marginLeft = "-50px";
+          }
+          isOpenbar = !isOpenbar;
+        }
+        function open_upload(){
+          if(isOpen_panel_add){
+            
+            panel.style.display = "flex"
+          }
+          else{
+            
+            panel.style.display = "none"
+          }
+          isOpen_panel_add = !isOpen_panel_add;
+        }
+        var scene = viewer.scene;
+        // var index;
+        // var name1;
+        // var tool_box = document.getElementById("myTool");
+        // var modal = document.getElementById("myModal");
+        // var modalAsset = document.getElementById("myModalAsset");
+        // // Get the button that opens the modal
+        // var btn_add = document.getElementById("addButton");
+        // var btn_showAsset = document.getElementById("showAsset");
+
+        // // Get the <span> element that closes the modal
+        // var btn_close = document.getElementById("close");
+        // var btn_close_asset = document.getElementById("closeAsset");
+        // //Set style point cloud
+       
+        // var set_plane_x = 0.0;
+        // var set_plane_y = 0.0;
+        // var wp = document.getElementById("widthVal");
+        // var lp = document.getElementById("longVal");
+        // var textX = document.getElementById("textSetX");
+        // var textY = document.getElementById("textSetY");
+        // var switchClipping = false;
+        // var switchCut = false;
+        // var switchOpen= false;
+        // var switchHeight = false;
+
+        // var urlParams = new URLSearchParams(window.location.search);
+        // console.log(urlParams)
+        // if(urlParams.has('fail') && urlParams.get('fail')){
+        //   swal.fire({
+        //       title: "Failed",
+        //       text: "something wrong!", 
+        //       icon: "error",
+        //       button: "Okay",
+        //       }).then(()=>{
+        //           console.log(window.location.hostname)
+        //           window.location.replace(window.location.origin);
+
+        //       });
+        // }
+        // if(urlParams.has('success') && urlParams.get('success')){
+        //   swal.fire({
+        //       title: "success",
+        //       text: "Upload success", 
+        //       icon: "success",
+        //       button: "Okay",
+        //       }).then(()=>{
+        //           console.log(window.location.hostname)
+        //           window.location.replace(window.location.origin);
+
+        //       });
+        // }
+        
+        // $("#enableHeightlevel").on('change',function(){
+        //   let enableColor = new ShowModel();
+        //   if($(this).is(':checked')){
+        //     switchHeight = $(this).is(':checked');
+        //     enableColor.TileColorGradient();
+        //   }
+        //   else{
+        //     switchHeight = $(this).is(':checked');
+        //    object.style.color = undefined;
+        //    enableColor.TileUndefineColor();
+        //   }
+        // })
+        // $("#enableplanes").on('change', function() {
+        //     if ($(this).is(':checked')) {
+        //       switchClipping = $(this).is(':checked');
+        //         $("#boxItems").animate({height:"+=390"},100);
+        //         $("#boxBorder").animate({height:"+=390"},100);
+        //         setTimeout(()=>{
+        //           document.getElementById('setclipping').style.display = "flex";
+        //         },100)
+        //     }
+        //     else {
+        //       switchClipping = $(this).is(':checked');
+        //       document.getElementById('setclipping').style.display = "none";
+        //       $("#boxItems").animate({height:"-=390"},100);
+        //       $("#boxBorder").animate({height:"-=390"},100);
+        //     }
+        // });
+        // $("#openplanes").on('change',function(){
+        //   if($(this).is(':checked')){
+        //     switchOpen = $(this).is(':checked');
+        //     let showclipping = new ShowModel();
+        //     showclipping.clipping_plane();
+        //     object.debugShowBoundingVolume = true
+            
+            
+        //   }
+        //   else{
+        //     switchOpen = $(this).is(':checked');
+        //     planeEntities[0].show = false;
+        //     planeEntities = [];
+        //     object.debugShowBoundingVolume = false
+        //   }
+        // });
+        // $("#showcut").on('change', function() {
+        //     if ($(this).is(':checked')) {
+        //         switchCut = $(this).is(':checked');
+        //         object_overley.show = !object_overley.show 
+        //     }
+        //     else {
+        //       switchCut = $(this).is(':checked');
+        //       object_overley.show = !object_overley.show 
+        //     }
+        // });
+        // //set planes as Horizontal and Vertical
+        // var switchHorizon = true;
+        // var switchVertical = false;
+        // var clipping ;
+        // $("#horizontal").on('change',function(){
+        //   if($(this).is(':checked')){
+        //     switchHorizon = $(this).is(':checked');
+        //     clipping = clippingPlanes._planes[0]._normal._cartesian3;
+        //     clipping.x = 0.0;
+        //     clipping.y = 0.0;
+        //     clipping.z = -1.0; 
+        //   }
+          
+        // });
+        // $("#vertical").on('change',function(){
+        //   if($(this).is(':checked')){
+        //     switchVertical = $(this).is(':checked');
+        //     clipping = clippingPlanes._planes[0]._normal._cartesian3;
+        //     clipping.x = 1.0;
+        //     clipping.y = 0.0;
+        //     clipping.z = 0.0;
+        //   }
+        // });
+        // // input slide//
+        // function setWidth(val){
+        //   widthPlane = val;
+        //   wp.value = val;
+        // }
+        // function setLong(val){
+        //   longPlane = val;
+        //   lp.value = val;
+        // }
+        // function setX(val){
+        //   set_plane_x = val;
+        //   textX.value = val;
+          
+
+        // }
+        // function setY(val){
+        //   set_plane_y = val;
+        //   textY.value = val;
+        //   clipping.y = val;
+        // }
+        // //////////////////
+        // //////////draw line, area and clear////////////////////////////
+        // function drawSomthing(mode){
+        //   var measure = new Measurement();
+        //   measure.SetMode(mode);
+        // }
+        // function clearMeasure(){
+        //   var measure = new Measurement();
+        //   measure.clearDrawingBoard();
+        // }
+
+        // function goHome() {
+        //   viewer.camera.flyHome(0);
+        //   viewer.scene.primitives.removeAll();
+        //   document.getElementById('toolBox').style.display = "none";
+        // }
+       
+        function Create_show_clipping_Model(id,type){
+          console.log(id,type)
+          if(type=='3DTILES'){
+             let show = new ShowModel();
+            show.show_model3d(id);
+            setTimeout(() => {
+            document.getElementById('toolBox').style.display = "flex";
+          }, 5000);
+          }
+          else if(type=='KML'){
+            let showKML = new KmlModel();
+            showKML.showKML(id);
+          }
+          else if(type=='GLTF'){
+            let showGLTF = new gLTF_model();
+            showGLTF.showModel(id);
+  
+          }
+        }
+
+        // var close = document.getElementsByClassName("closebtn");
+        // var i;
+
+        // for (i = 0; i < close.length; i++) {
+        //   close[i].onclick = function () {
+        //     var div = this.parentElement;
+        //     div.style.opacity = "0";
+        //     setTimeout(function () {
+        //       div.style.display = "none";
+        //     }, 600);
+        //   };
+        // }
+
+        // ///////////////////////////////////////////////////////
+        // //////////////////////////////////////////////////////
+        // /////////////////////////////////////////////////////
+
+        // onLoader = () => {
+        //   document.getElementById("overlay").style.display = "flex";
+        // };
+
+
+        const actualBtn = document.getElementById("myfile");
+
+        const fileChosen = document.getElementById("fileName");
+
+        actualBtn.addEventListener("change", function () {
+          fileChosen.textContent = this.files[0].name;
+        });
+        // ///////////////////////////////////////////////////////
+        // //////////////////////////////////////////////////////
+        // /////////////////////////////////////////////////////
+
+
+
+
+
+
+      </script>
+      <script src="/module/getFile.js"></script>
+      <script src="/module/Measurement.js"></script>
+      <script src="/module/ShowModel.js"></script>
+      <script src="/module/generateColor.js"></script>
+      <script src="/module/KmlModel.js"></script>
+      <script src="/module/Intersection.js"></script>
+      <script src="/module/deleteModel.js"></script>
+      <script src="/module/gLTF_model.js"></script>
+  </body>
+</html>

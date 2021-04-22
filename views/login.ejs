@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <title>Login page</title>
+  <body>
+    <div id="app">
+      
+        <input
+          type="text"
+          placeholder="Username"
+          name="Username"
+          value=""
+          required
+        />
+        <p></p>
+        <input
+          type="text"
+          placeholder="Password"
+          name="password"
+          value=""
+          required
+        />
+        <p></p>
+        <button @click="login()">login</button>
+      
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello Vue!",
+        },
+        methods:{
+            login(){
+                axios.get('https://cesium.com/ion/oauth?response_type=code&client_id=199&redirect_uri=https://localhost/oauth2/callback&scope=asset:read%20asset:list&state=a576f975g00d&code_challenge=bKE9UspwyIPg8LsQHkJaiehiTeUdstI5JZOvaoQRgJA&code_challenge_method=S256')
+                .then(res=>{
+                    console.log(res.data)
+                })
+            }
+        }
+      });
+    </script>
+  </body>
+</html>

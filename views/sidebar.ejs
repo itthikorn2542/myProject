@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src=" https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
+        <!-- ===== BOX ICONS ===== -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+        <script src="https://kit.fontawesome.com/399838dada.js" crossorigin="anonymous"></script>
+       
+        
+        <!-- ===== CSS ===== -->
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/sidebar.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+       
+
+        
+   
+
+        <title>Sidebar menu responsive</title>
+    </head>
+    <body id="body-pd">
+        <header class="header" id="header">
+            <div class="header__toggle">
+                <i class='bx bx-menu' id="header-toggle"></i>
+            </div>
+
+            <div class="header__img">
+                <img src="/images/school1.png" alt="">
+            </div>
+        </header>
+
+        <div class="l-navbar" id="nav-bar">
+            <nav class="nav">
+                <div>
+                    <a href="#" class="nav__logo">
+                        <i class='bx bx-braille nav__logo-icon'></i>
+                        
+                        <span class="nav__logo-name">Zicapoint</span>
+                    </a>
+
+                    <div class="nav__list">
+                        <a href="#" class="nav__link active">
+                            <i class='bx bx-folder nav__icon' ></i>
+                            <span class="nav__name">Asset</span>
+                        </a>
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-add-to-queue nav__icon'></i>
+                            <span class="nav__name">Add data</span>
+                        </a>
+                        <a href="#" class="nav__link ">
+                            <i class='bx bx-user nav__icon' ></i>
+                            <span class="nav__name">Users</span>
+                        </a>
+                        
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-message-square-detail nav__icon' ></i>
+                            <span class="nav__name">Messages</span>
+                        </a>
+
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-bookmark nav__icon' ></i>
+                            <span class="nav__name">Favorites</span>
+                        </a>
+
+                        
+
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-bar-chart-alt-2 nav__icon' ></i>
+                            <span class="nav__name">Analytics</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="#" class="nav__link">
+                    <i class='bx bx-log-out nav__icon' ></i>
+                    <span class="nav__name">Log Out</span>
+                </a>
+            </nav>
+        </div>
+        <!--===== Component =====-->
+        <div style="margin-top: 90px;">
+        <table id="example" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Asset id</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Size</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                        <button class="w3-button w3-green"><i class="far fa-eye"></i></button>                        
+                        <button class="w3-button w3-grey"><i class="far fa-edit"></i></i></button>
+                        <button class="w3-button w3-red"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                        <button class="w3-button w3-green"><i class="far fa-eye"></i></button>                        
+                        <button class="w3-button w3-grey"><i class="far fa-edit"></i></i></button>
+                        <button class="w3-button w3-red"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                        <button class="w3-button w3-green"><i class="far fa-eye"></i></button>                        
+                        <button class="w3-button w3-grey"><i class="far fa-edit"></i></i></button>
+                        <button class="w3-button w3-red"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                        <button class="w3-button w3-green"><i class="far fa-eye"></i></button>                        
+                        <button class="w3-button w3-grey"><i class="far fa-edit"></i></i></button>
+                        <button class="w3-button w3-red"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                        <button class="w3-button w3-green"><i class="far fa-eye"></i></button>                        
+                        <button class="w3-button w3-grey"><i class="far fa-edit"></i></i></button>
+                        <button class="w3-button w3-red"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                        <button class="w3-button w3-green"><i class="far fa-eye"></i></button>                        
+                        <button class="w3-button w3-grey"><i class="far fa-edit"></i></i></button>
+                        <button class="w3-button w3-red"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                        <button class="w3-button w3-green"><i class="far fa-eye"></i></button>                        
+                        <button class="w3-button w3-grey"><i class="far fa-edit"></i></i></button>
+                        <button class="w3-button w3-red"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                        <button class="w3-button w3-green"><i class="far fa-eye"></i></button>                        
+                        <button class="w3-button w3-grey"><i class="far fa-edit"></i></i></button>
+                        <button class="w3-button w3-red"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                        <button class="w3-button w3-green"><i class="far fa-eye"></i></button>                        
+                        <button class="w3-button w3-grey"><i class="far fa-edit"></i></i></button>
+                        <button class="w3-button w3-red"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                        <button class="w3-button w3-green"><i class="far fa-eye"></i></button>                        
+                        <button class="w3-button w3-grey"><i class="far fa-edit"></i></i></button>
+                        <button class="w3-button w3-red"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                        <button class="w3-button w3-green"><i class="far fa-eye"></i></button>                        
+                        <button class="w3-button w3-grey"><i class="far fa-edit"></i></i></button>
+                        <button class="w3-button w3-red"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                        <button class="w3-button w3-green"><i class="far fa-eye"></i></button>                        
+                        <button class="w3-button w3-grey"><i class="far fa-edit"></i></i></button>
+                        <button class="w3-button w3-red"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                        <button class="w3-button w3-green"><i class="far fa-eye"></i></button>                        
+                        <button class="w3-button w3-grey"><i class="far fa-edit"></i></i></button>
+                        <button class="w3-button w3-red"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>
+                        <button class="w3-button w3-green"><i class="far fa-eye"></i></button>                        
+                        <button class="w3-button w3-grey"><i class="far fa-edit"></i></i></button>
+                        <button class="w3-button w3-red"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                
+
+                
+            
+                
+               
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Asset id</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Size</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+       
+       
+        
+        <!--===== MAIN JS =====-->
+       <script>
+           $(document).ready(function() {
+    $('#example').DataTable();
+} );
+       </script>
+        <script src="/module/sidebar.js"></script>
+    </body>
+</html>

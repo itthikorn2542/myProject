@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    </head>
+    <title>
+        Login page
+    </title>
+    <body>
+        <div>
+            <input type="text" placeholder="Username" required><p></p>
+            <input type="text" placeholder="Password" required><p></p>
+            <button>registor</button>
+        </div>
+        <script>
+            function go_login(){
+                $.ajax({
+                    type: "POST",
+                    url: "/del",
+                    data: {id:id},
+                    success: function(data){
+                      
+                    } 
+                });
+            }
+        </script>
+    </body>
+</html>
