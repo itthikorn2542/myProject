@@ -61,7 +61,7 @@ app.post("/savefile", async (req, res, next) => {
       }
       else if(fieldName == "convertto"){
 
-        console.log("convertto: "+fieldName);
+        console.log("convertto: "+fieldValue);
       } 
       else if(fieldName == "Aname") {
         //console.log('Got a field name, field value:', fieldValue);
