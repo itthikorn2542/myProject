@@ -114,7 +114,197 @@
           
 
         </div>
+        <div class="tool-bar">
+          <div class="tool-box-items" id="boxItems">
+            <div class="border-box" id="boxBorder">
+              <div style="height: 30px;width: 100%;display: flex;flex-direction: row;">
+                  <div style="height: 30px;display: flex;align-items: center;justify-content: center;color: white;">
+                    <strong style="margin: 3px;">Clipping</strong>
+                    <i class="fas fa-layer-group"></i>
+                  </div> 
+              </div>
+  
+              <div style="height: 3px;background-color: white;"></div>
+  
+              <div style="height: 50px;width: 100%;display: flex; align-items: center;padding: 5px;color: white;">
+                
+                <label class="switch">
+                  <input type="checkbox" id="enableplanes">
+                  <span class="slider round"></span>
+                </label>
+                <div >Enable Clipping planes</div>
+              </div>
+              
+              <div style="height: 390px;width: 100%;display: none;align-items: space-between;flex-direction: column;" id="setclipping">
+                <div style="height: 3px;background-color: white;"></div>
+                <div style="height: 50px;width: 100%;display: flex; align-items: center;padding: 5px;color: white;">
+                  
+                  <label class="switch">
+                    <input type="checkbox" id="openplanes">
+                    <span class="slider round"></span>
+                  </label>
+                  <div >Open planes</div>
+                </div>
+                <div style="height: 3px;background-color: white;"></div>
+  
+                <div style="height: 20px;width: 100%;justify-content: center;align-items: center;display: flex;color: white;">
+                      <strong>Setting planes</strong>
+                </div>
+                  <div style="height: 50px;width: 100%;display: flex;padding: 5px;justify-content: space-around;align-items: center;">
+                      <div style="padding-top: 10px;color: white;">
+                         <label class="container">Horizontal
+                          <input type="radio" checked="checked" name="radio" id="horizontal">
+                          <span class="checkmark"></span>
+                        </label>
+                      </div>
+                      <div style="padding-top: 10px;color: white;">
+                        <label class="container">Vertical
+                          <input type="radio" name="radio" id="vertical">
+                          <span class="checkmark"></span>
+                        </label>
+                      </div>
+                  </div>
+                  <div style="height: 20px;width: 100%;align-items: center;display: flex;color: white;padding-left: 3px;">
+                    <strong>Planes size</strong>
+                  </div>
+                  <div style="height: 100px;width: 100%;display: flex;padding: 5px;justify-content: space-around;align-items: center;flex-direction: column;">
+                    <div style="display: flex;flex-direction: row;width: 100%;">
+                      <div style="width:70px;display: flex;align-items: center;color: white;">
+                        width: 
+                      </div>
+                      <div style="width:200px;display: flex;align-items: center;justify-content: center;">
+                          <input type="range" min="1.0" max="5.0" step="0.1" value="2.5" oninput="setWidth(this.value)">
+                      </div>
+                      <div style="width:70px;display: flex;align-items: center;justify-content: center;">
+                          <input type="text" value="2.5" size="2" style="text-align: center;"  id="widthVal">
+                      </div>
+                    </div> 
+                   <div style="display: flex;flex-direction: row;width: 100%;justify-content: space-around;">
+                      <div style="width:70px;display: flex;align-items: center;color: white;">
+                            long: 
+                      </div>
+                      <div style="width:200px;display: flex;align-items: center;justify-content: center;">
+                          <input type="range" min="1.0" max="5.0" value="2.5" step="0.1" oninput="setLong(this.value)">
+                      </div>
+                      <div style="width:70px;display: flex;align-items: center;justify-content: center;">
+                          <input type="text" value="2.5" size="2" style="text-align: center;" id="longVal">
+                      </div>
+     
+                   </div>
+                   
+                     
+                  </div>
+  
+                  <div style="height: 20px;width: 100%;align-items: center;display: flex;color: white;padding-left: 3px;">
+                    <strong>Rotation clipping planes</strong>
+                  </div>
+  
+  
+                  <div style="height: 140px;width: 100%;display: flex;padding: 5px;justify-content: space-around;align-items: center;flex-direction: column;">
+                    <div style="display: flex;flex-direction: row;width: 100%;">
+                      <div style="width:70px;display: flex;align-items: center;color: white;">
+                        X: 
+                      </div>
+                      <div style="width:200px;display: flex;align-items: center;justify-content: center;">
+                          <input type="range" min="-1.0" max="1.0" value="0.0" step="0.1" oninput="setX(this.value)">
+                      </div>
+                      <div style="width:70px;display: flex;align-items: center;justify-content: center;">
+                          <input type="text" value="0" size="2" style="text-align: center;" id="textSetX">
+                      </div>
+                    </div> 
+                   <div style="display: flex;flex-direction: row;width: 100%;justify-content: space-around;">
+                      <div style="width:70px;display: flex;align-items: center;color: white;">
+                            Y: 
+                      </div>
+                      <div style="width:200px;display: flex;align-items: center;justify-content: center;">
+                          <input type="range" min="-1.0" max="1.0" value="0.0" step="0.1"  oninput="setY(this.value)">
+                      </div>
+                      <div style="width:70px;display: flex;align-items: center;justify-content: center;">
+                          <input type="text" value="0" size="2" style="text-align: center;" id="textSetY">
+                      </div>
+     
+                   </div>
+                   <div style="display: flex;flex-direction: row;width: 100%;justify-content: space-around;">
+                      <div style="width:70px;display: flex;align-items: center;color: white;">
+                            Z: 
+                      </div>
+                      <div style="width:200px;display: flex;align-items: center;justify-content: center;">
+                          <input type="range" min="-1.0" max="1.0" value="0.0" step="0.1"  oninput="setY(this.value)">
+                      </div>
+                      <div style="width:70px;display: flex;align-items: center;justify-content: center;">
+                          <input type="text" value="0" size="2" style="text-align: center;" id="textSetY">
+                      </div>
+   
+                    </div>
+                     
+                  </div>
+                  <div style="height: 50px;width: 100%;display: flex; align-items: center;padding: 5px;color: white;">
+                   
+                    <label class="switch" id="showcut">
+                      <input type="checkbox" >
+                      <span class="slider round"></span>
+                    </label>
+                    <div >Show clipping</div>
+                  </div>
+              </div>
+  
+            </div>
+          </div>
+  
+          <div class="tool-box-items" id="boxItems">
+            <div class="border-box" id="boxBorder">
+              <div style="height: 30px;width: 100%;display: flex;flex-direction: row;">
+                <div style="height: 30px;display: flex;align-items: center;justify-content: center;color: white;">
+                  <strong style="margin: 3px;">Elevation</strong>
+                  <i class="fas fa-mountain"></i>
+                </div> 
+            </div>
+  
+              <div style="height: 3px;background-color: white;"></div>
+              <div style="height: 50px;width: 100%;display: flex; align-items: center;padding: 5px;color: white;">
+                
+                <label class="switch">
+                  <input type="checkbox" id="enableHeightlevel">
+                  <span class="slider round"></span>
+                </label>
+                <div >Enable Elevation</div>
+              </div>
+            </div>
+          </div>
+  
+  
+          <div class="tool-box-items" id="boxItems">
+            <div class="border-box" id="boxBorder">
+              <div style="height: 30px;width: 100%;display: flex;flex-direction: row;">
+                <div style="height: 30px;display: flex;align-items: center;justify-content: center;color: white;">
+                  <strong style="margin: 3px;">Measurement</strong>
+                  <i class="fas fa-drafting-compass"></i>
+                </div> 
+            </div>
+  
+              <div style="height: 3px;background-color: white;"></div>
+              <div style="height: 50px;width: 100%;display: flex; align-items: center;justify-content: space-between;padding: 5px;color: white;">
+                  <div class="measure" onclick="drawSomthing('draw3DLine')">
+                      <i class="fas fa-ruler-combined"></i>
+                  </div>
+                  <div class="measure" onclick="drawSomthing('drawPloy')">
+                      <i class="fas fa-vector-square"></i>
+                  </div>
+                  <div class="measure" onclick="clearMeasure()">
+                    
+                    <i class="fas fa-eraser"></i>
+                  </div>
+              </div>
+  
+            </div>
+          </div>
+  
+  
           
+          
+          </div>
+
+        </div>  
         
 
         
@@ -171,171 +361,171 @@
           isOpen_panel_add = !isOpen_panel_add;
         }
         var scene = viewer.scene;
-        // var index;
-        // var name1;
-        // var tool_box = document.getElementById("myTool");
-        // var modal = document.getElementById("myModal");
-        // var modalAsset = document.getElementById("myModalAsset");
-        // // Get the button that opens the modal
-        // var btn_add = document.getElementById("addButton");
-        // var btn_showAsset = document.getElementById("showAsset");
+        var index;
+        var name1;
+        var tool_box = document.getElementById("myTool");
+        var modal = document.getElementById("myModal");
+        var modalAsset = document.getElementById("myModalAsset");
+        // Get the button that opens the modal
+        var btn_add = document.getElementById("addButton");
+        var btn_showAsset = document.getElementById("showAsset");
 
-        // // Get the <span> element that closes the modal
-        // var btn_close = document.getElementById("close");
-        // var btn_close_asset = document.getElementById("closeAsset");
-        // //Set style point cloud
+        // Get the <span> element that closes the modal
+        var btn_close = document.getElementById("close");
+        var btn_close_asset = document.getElementById("closeAsset");
+        //Set style point cloud
        
-        // var set_plane_x = 0.0;
-        // var set_plane_y = 0.0;
-        // var wp = document.getElementById("widthVal");
-        // var lp = document.getElementById("longVal");
-        // var textX = document.getElementById("textSetX");
-        // var textY = document.getElementById("textSetY");
-        // var switchClipping = false;
-        // var switchCut = false;
-        // var switchOpen= false;
-        // var switchHeight = false;
+        var set_plane_x = 0.0;
+        var set_plane_y = 0.0;
+        var wp = document.getElementById("widthVal");
+        var lp = document.getElementById("longVal");
+        var textX = document.getElementById("textSetX");
+        var textY = document.getElementById("textSetY");
+        var switchClipping = false;
+        var switchCut = false;
+        var switchOpen= false;
+        var switchHeight = false;
 
-        // var urlParams = new URLSearchParams(window.location.search);
-        // console.log(urlParams)
-        // if(urlParams.has('fail') && urlParams.get('fail')){
-        //   swal.fire({
-        //       title: "Failed",
-        //       text: "something wrong!", 
-        //       icon: "error",
-        //       button: "Okay",
-        //       }).then(()=>{
-        //           console.log(window.location.hostname)
-        //           window.location.replace(window.location.origin);
+        var urlParams = new URLSearchParams(window.location.search);
+        console.log(urlParams)
+        if(urlParams.has('fail') && urlParams.get('fail')){
+          swal.fire({
+              title: "Failed",
+              text: "something wrong!", 
+              icon: "error",
+              button: "Okay",
+              }).then(()=>{
+                  console.log(window.location.hostname)
+                  window.location.replace(window.location.origin);
 
-        //       });
-        // }
-        // if(urlParams.has('success') && urlParams.get('success')){
-        //   swal.fire({
-        //       title: "success",
-        //       text: "Upload success", 
-        //       icon: "success",
-        //       button: "Okay",
-        //       }).then(()=>{
-        //           console.log(window.location.hostname)
-        //           window.location.replace(window.location.origin);
+              });
+        }
+        if(urlParams.has('success') && urlParams.get('success')){
+          swal.fire({
+              title: "success",
+              text: "Upload success", 
+              icon: "success",
+              button: "Okay",
+              }).then(()=>{
+                  console.log(window.location.hostname)
+                  window.location.replace(window.location.origin);
 
-        //       });
-        // }
+              });
+        }
         
-        // $("#enableHeightlevel").on('change',function(){
-        //   let enableColor = new ShowModel();
-        //   if($(this).is(':checked')){
-        //     switchHeight = $(this).is(':checked');
-        //     enableColor.TileColorGradient();
-        //   }
-        //   else{
-        //     switchHeight = $(this).is(':checked');
-        //    object.style.color = undefined;
-        //    enableColor.TileUndefineColor();
-        //   }
-        // })
-        // $("#enableplanes").on('change', function() {
-        //     if ($(this).is(':checked')) {
-        //       switchClipping = $(this).is(':checked');
-        //         $("#boxItems").animate({height:"+=390"},100);
-        //         $("#boxBorder").animate({height:"+=390"},100);
-        //         setTimeout(()=>{
-        //           document.getElementById('setclipping').style.display = "flex";
-        //         },100)
-        //     }
-        //     else {
-        //       switchClipping = $(this).is(':checked');
-        //       document.getElementById('setclipping').style.display = "none";
-        //       $("#boxItems").animate({height:"-=390"},100);
-        //       $("#boxBorder").animate({height:"-=390"},100);
-        //     }
-        // });
-        // $("#openplanes").on('change',function(){
-        //   if($(this).is(':checked')){
-        //     switchOpen = $(this).is(':checked');
-        //     let showclipping = new ShowModel();
-        //     showclipping.clipping_plane();
-        //     object.debugShowBoundingVolume = true
+        $("#enableHeightlevel").on('change',function(){
+          let enableColor = new ShowModel();
+          if($(this).is(':checked')){
+            switchHeight = $(this).is(':checked');
+            enableColor.TileColorGradient();
+          }
+          else{
+            switchHeight = $(this).is(':checked');
+           object.style.color = undefined;
+           enableColor.TileUndefineColor();
+          }
+        })
+        $("#enableplanes").on('change', function() {
+            if ($(this).is(':checked')) {
+              switchClipping = $(this).is(':checked');
+                $("#boxItems").animate({height:"+=390"},100);
+                $("#boxBorder").animate({height:"+=390"},100);
+                setTimeout(()=>{
+                  document.getElementById('setclipping').style.display = "flex";
+                },100)
+            }
+            else {
+              switchClipping = $(this).is(':checked');
+              document.getElementById('setclipping').style.display = "none";
+              $("#boxItems").animate({height:"-=390"},100);
+              $("#boxBorder").animate({height:"-=390"},100);
+            }
+        });
+        $("#openplanes").on('change',function(){
+          if($(this).is(':checked')){
+            switchOpen = $(this).is(':checked');
+            let showclipping = new ShowModel();
+            showclipping.clipping_plane();
+            object.debugShowBoundingVolume = true
             
             
-        //   }
-        //   else{
-        //     switchOpen = $(this).is(':checked');
-        //     planeEntities[0].show = false;
-        //     planeEntities = [];
-        //     object.debugShowBoundingVolume = false
-        //   }
-        // });
-        // $("#showcut").on('change', function() {
-        //     if ($(this).is(':checked')) {
-        //         switchCut = $(this).is(':checked');
-        //         object_overley.show = !object_overley.show 
-        //     }
-        //     else {
-        //       switchCut = $(this).is(':checked');
-        //       object_overley.show = !object_overley.show 
-        //     }
-        // });
-        // //set planes as Horizontal and Vertical
-        // var switchHorizon = true;
-        // var switchVertical = false;
-        // var clipping ;
-        // $("#horizontal").on('change',function(){
-        //   if($(this).is(':checked')){
-        //     switchHorizon = $(this).is(':checked');
-        //     clipping = clippingPlanes._planes[0]._normal._cartesian3;
-        //     clipping.x = 0.0;
-        //     clipping.y = 0.0;
-        //     clipping.z = -1.0; 
-        //   }
+          }
+          else{
+            switchOpen = $(this).is(':checked');
+            planeEntities[0].show = false;
+            planeEntities = [];
+            object.debugShowBoundingVolume = false
+          }
+        });
+        $("#showcut").on('change', function() {
+            if ($(this).is(':checked')) {
+                switchCut = $(this).is(':checked');
+                object_overley.show = !object_overley.show 
+            }
+            else {
+              switchCut = $(this).is(':checked');
+              object_overley.show = !object_overley.show 
+            }
+        });
+        //set planes as Horizontal and Vertical
+        var switchHorizon = true;
+        var switchVertical = false;
+        var clipping ;
+        $("#horizontal").on('change',function(){
+          if($(this).is(':checked')){
+            switchHorizon = $(this).is(':checked');
+            clipping = clippingPlanes._planes[0]._normal._cartesian3;
+            clipping.x = 0.0;
+            clipping.y = 0.0;
+            clipping.z = -1.0; 
+          }
           
-        // });
-        // $("#vertical").on('change',function(){
-        //   if($(this).is(':checked')){
-        //     switchVertical = $(this).is(':checked');
-        //     clipping = clippingPlanes._planes[0]._normal._cartesian3;
-        //     clipping.x = 1.0;
-        //     clipping.y = 0.0;
-        //     clipping.z = 0.0;
-        //   }
-        // });
-        // // input slide//
-        // function setWidth(val){
-        //   widthPlane = val;
-        //   wp.value = val;
-        // }
-        // function setLong(val){
-        //   longPlane = val;
-        //   lp.value = val;
-        // }
-        // function setX(val){
-        //   set_plane_x = val;
-        //   textX.value = val;
+        });
+        $("#vertical").on('change',function(){
+          if($(this).is(':checked')){
+            switchVertical = $(this).is(':checked');
+            clipping = clippingPlanes._planes[0]._normal._cartesian3;
+            clipping.x = 1.0;
+            clipping.y = 0.0;
+            clipping.z = 0.0;
+          }
+        });
+        // input slide//
+        function setWidth(val){
+          widthPlane = val;
+          wp.value = val;
+        }
+        function setLong(val){
+          longPlane = val;
+          lp.value = val;
+        }
+        function setX(val){
+          set_plane_x = val;
+          textX.value = val;
           
 
-        // }
-        // function setY(val){
-        //   set_plane_y = val;
-        //   textY.value = val;
-        //   clipping.y = val;
-        // }
-        // //////////////////
-        // //////////draw line, area and clear////////////////////////////
-        // function drawSomthing(mode){
-        //   var measure = new Measurement();
-        //   measure.SetMode(mode);
-        // }
-        // function clearMeasure(){
-        //   var measure = new Measurement();
-        //   measure.clearDrawingBoard();
-        // }
+        }
+        function setY(val){
+          set_plane_y = val;
+          textY.value = val;
+          clipping.y = val;
+        }
+        //////////////////
+        //////////draw line, area and clear////////////////////////////
+        function drawSomthing(mode){
+          var measure = new Measurement();
+          measure.SetMode(mode);
+        }
+        function clearMeasure(){
+          var measure = new Measurement();
+          measure.clearDrawingBoard();
+        }
 
-        // function goHome() {
-        //   viewer.camera.flyHome(0);
-        //   viewer.scene.primitives.removeAll();
-        //   document.getElementById('toolBox').style.display = "none";
-        // }
+        function goHome() {
+          viewer.camera.flyHome(0);
+          viewer.scene.primitives.removeAll();
+          document.getElementById('toolBox').style.display = "none";
+        }
        
         function Create_show_clipping_Model(id,type){
           console.log(id,type)
