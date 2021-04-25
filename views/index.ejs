@@ -77,18 +77,28 @@
                   <% var date = data.Date.getDate()+"/"+(data.Date.getMonth()+1)+"/"+data.Date.getFullYear()%>
                   
                   <div style="display: flex;flex-direction: row;justify-content: space-evenly;align-items: center;"  id="<%=data.AssetId;%>">
-                      <div class="item-box w3-card " onclick="Create_show_clipping_Model('<%=data.AssetId;%>','<%=data.TypeOfAsset; %>')">
-                        <div style="position: absolute;margin: 3px;color: white; font-size: 10px;font-weight: bold;" ><%=data.AssetId;%></div>
-                        <div class="label-item">
-                          <span><%=data.name; %></span>
-                         
-                        </div>
-                      </div>
+                    <div style="display: flex;height: 70px;width: 100%;flex-direction: column;">
+                      <div style="display: flex;height: 40px;width: 100%;justify-content: space-between;">
+                          <div class="item-box w3-card " onclick="Create_show_clipping_Model('<%=data.AssetId;%>','<%=data.TypeOfAsset; %>')">
+                            <div class="label-item">
+                              <span><%=data.name; %></span>
+                            </div>
+                          </div>
                       <div class="edit-icon btn-warning"><i class="far fa-edit"></i></div>
                       <div class="remove-icon btn-danger" onclick="send_to_delete('<%=data.AssetId;%>')"><i class="far fa-trash-alt"></i></div>
+                      </div>
+                      
+                      <div style="display: flex;height: 40px;width: 100%;align-items: center;">
+                          <div class="prop-asset"><%=data.AssetId; %></div>
+                          <div class="prop-asset"><%=date; %></div>
+                          <div class="prop-asset"><%=data.TypeOfAsset; %></div>
+                      </div>
+                    </div>
+                      
+                    
                   </div>
                   
-                  <div style="width: 100%;height: 1px;background-color: white;margin-top: 4px;"></div>
+                  <div style="width: 100%;height: 1px;background-color: white;margin-top: 10px;margin-bottom: 10px;"></div>
                   
                 <%});%>
                 
